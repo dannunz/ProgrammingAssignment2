@@ -1,0 +1,17 @@
+{
+    "contents" : "##  This program computes and caches the inverse of a matrix. If the inverse has already been computed \n## it reads the inverse from the cache instead of computing it\n\n## This function caches the inverse of the matrix X\n\nmakeCacheMatrix <- function(X = matrix()) {\n  M <- NULL\n  set <- function(y) {\n    # assignment operator <<- allows variable to persist in \n    # the function closure environment\n    X <<- y\n    M <<- NULL\n  }\n  # accessed variable using get  \n  #Note get looks up the chain of parents until it finds a binding \n  get <- function() X\n  setinv <- function(solve) M <<- solve\n  getinv <- function() M\n  list(set = set, get = get,\n       setinv = setinv,\n       getinv = getinv)\n}\n\n\n## This function checks to see if the inverse is already computed.\n\ncacheSolve <- function(x, ...) {\n        ## Return a matrix that is the inverse of 'x'\n  cacheSolve <- function(X=matrix(), ...) {\n    M <- X$getinv()\n    if(!is.null(M)) {\n      message(\"getting cached data\")\n      return(M)\n    }\n    \n    data <- X$get()\n    m <- solve(data, ...)\n    X$setinv(M)\n    M\n  }\n}\n",
+    "created" : 1455792683054.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2336957476",
+    "id" : "161D763E",
+    "lastKnownWriteTime" : 1455759031,
+    "path" : "~/GitHub/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "type" : "r_source"
+}
